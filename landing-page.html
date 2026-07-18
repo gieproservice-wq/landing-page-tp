@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GIE Pro Service — Services Professionnels à Dakar</title>
+  <meta name="description" content="GIE Pro Service accompagne les entreprises et particuliers à Dakar : gestion, digitalisation et services aux entreprises.">
+  <style>
+    :root {
+      --primary: #0d6e5f;
+      --primary-dark: #084c42;
+      --accent: #f2b705;
+      --dark: #10201d;
+      --gray: #5a6b67;
+      --light: #f4f8f7;
+      --white: #ffffff;
+      --radius: 14px;
+      --shadow: 0 10px 30px rgba(13, 110, 95, 0.12);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      color: var(--dark);
+      line-height: 1.6;
+      background: var(--white);
+    }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+    /* ===== Navigation ===== */
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid #e5edeb;
+    }
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      max-width: 1100px; margin: 0 auto; padding: 16px 20px;
+    }
+    .logo { font-size: 1.35rem; font-weight: 800; color: var(--primary); text-decoration: none; }
+    .logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
+    .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; transition: color .2s; }
+    .nav-links a:hover { color: var(--primary); }
+    .btn {
+      display: inline-block; padding: 12px 26px; border-radius: 999px;
+      font-weight: 700; text-decoration: none; transition: all .25s; border: none; cursor: pointer;
+    }
+    .btn-primary { background: var(--primary); color: var(--white); }
+    .btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: var(--shadow); }
+    .btn-outline { border: 2px solid var(--primary); color: var(--primary); }
+    .btn-outline:hover { background: var(--primary); color: var(--white); }
+    .burger { display: none; font-size: 1.6rem; background: none; border: none; cursor: pointer; color: var(--primary); }
+
+    /* ===== Hero ===== */
+    .hero {
+      background: linear-gradient(135deg, #eafaf6 0%, #ffffff 60%);
+      padding: 90px 0 70px;
+    }
+    .hero-inner { display: grid; grid-template-columns: 1.1fr .9fr; gap: 50px; align-items: center; }
+    .badge {
+      display: inline-block; background: #dff3ee; color: var(--primary);
+      padding: 6px 16px; border-radius: 999px; font-size: .85rem; font-weight: 700; margin-bottom: 18px;
+    }
+    .hero h1 { font-size: 2.9rem; line-height: 1.15; margin-bottom: 18px; }
+    .hero h1 em { color: var(--primary); font-style: normal; }
+    .hero p { color: var(--gray); font-size: 1.1rem; margin-bottom: 30px; max-width: 520px; }
+    .hero-cta { display: flex; gap: 16px; flex-wrap: wrap; }
+    .hero-visual {
+      background: linear-gradient(160deg, var(--primary), var(--primary-dark));
+      border-radius: var(--radius); padding: 36px; color: var(--white);
+      box-shadow: var(--shadow);
+    }
+    .hero-visual h3 { font-size: 1.2rem; margin-bottom: 14px; }
+    .hero-visual ul { list-style: none; }
+    .hero-visual li { padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.15); }
+    .hero-visual li:last-child { border: none; }
+    .hero-visual li::before { content: "✔"; color: var(--accent); margin-right: 10px; font-weight: 700; }
+
+    /* ===== Stats ===== */
+    .stats { background: var(--dark); color: var(--white); padding: 40px 0; }
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; text-align: center; }
+    .stat-num { font-size: 2.2rem; font-weight: 800; color: var(--accent); }
+    .stat-label { color: #b8c7c3; font-size: .95rem; }
+
+    /* ===== Services ===== */
+    section { padding: 80px 0; }
+    .section-title { text-align: center; margin-bottom: 50px; }
+    .section-title h2 { font-size: 2.1rem; margin-bottom: 10px; }
+    .section-title p { color: var(--gray); max-width: 560px; margin: 0 auto; }
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+    .card {
+      background: var(--light); border-radius: var(--radius); padding: 32px 26px;
+      transition: transform .25s, box-shadow .25s;
+    }
+    .card:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
+    .card-icon {
+      width: 54px; height: 54px; border-radius: 12px; display: flex;
+      align-items: center; justify-content: center; font-size: 1.5rem;
+      background: var(--primary); color: var(--white); margin-bottom: 18px;
+    }
+    .card h3 { margin-bottom: 10px; font-size: 1.15rem; }
+    .card p { color: var(--gray); font-size: .97rem; }
+
+    /* ===== Témoignages ===== */
+    .testimonials { background: var(--light); }
+    .testimonial-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 26px; }
+    .testimonial {
+      background: var(--white); border-radius: var(--radius); padding: 30px;
+      box-shadow: 0 4px 14px rgba(0,0,0,.05);
+    }
+    .testimonial p { color: var(--gray); font-style: italic; margin-bottom: 18px; }
+    .author { display: flex; align-items: center; gap: 14px; }
+    .avatar {
+      width: 46px; height: 46px; border-radius: 50%; background: var(--primary);
+      color: var(--white); display: flex; align-items: center; justify-content: center; font-weight: 700;
+    }
+    .author strong { display: block; font-size: .98rem; }
+    .author small { color: var(--gray); }
+
+    /* ===== Contact / CTA ===== */
+    .cta {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: var(--white); text-align: center; border-radius: var(--radius);
+      padding: 60px 30px; margin: 0 20px;
+    }
+    .cta h2 { font-size: 2rem; margin-bottom: 12px; }
+    .cta p { color: #d4e9e4; margin-bottom: 28px; }
+    .btn-accent { background: var(--accent); color: var(--dark); }
+    .btn-accent:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(242,183,5,.35); }
+
+    /* ===== Footer ===== */
+    footer { background: var(--dark); color: #b8c7c3; padding: 40px 0 24px; margin-top: 80px; }
+    .footer-grid { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 24px; margin-bottom: 26px; }
+    footer a { color: #b8c7c3; text-decoration: none; }
+    footer a:hover { color: var(--accent); }
+    .copyright { text-align: center; font-size: .85rem; border-top: 1px solid #223530; padding-top: 18px; }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 820px) {
+      .hero-inner, .cards, .testimonial-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero h1 { font-size: 2.1rem; }
+      .nav-links {
+        display: none; position: absolute; top: 100%; left: 0; right: 0;
+        background: var(--white); flex-direction: column; padding: 20px;
+        border-bottom: 1px solid #e5edeb;
+      }
+      .nav-links.open { display: flex; }
+      .burger { display: block; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <a href="#" class="logo">GIE Pro<span>Service</span></a>
+      <button class="burger" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+      <ul class="nav-links">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#temoignages">Témoignages</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#contact" class="btn btn-primary">Demander un devis</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="container hero-inner">
+      <div>
+        <span class="badge">🇸🇳 Basé à Dakar, Sénégal</span>
+        <h1>Des services professionnels <em>fiables</em> pour votre entreprise</h1>
+        <p>GIE Pro Service accompagne les entreprises et les particuliers dans leur gestion quotidienne : administration, digitalisation et prestations sur mesure.</p>
+        <div class="hero-cta">
+          <a href="#contact" class="btn btn-primary">Nous contacter</a>
+          <a href="#services" class="btn btn-outline">Découvrir nos services</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <h3>Pourquoi nous choisir ?</h3>
+        <ul>
+          <li>Équipe expérimentée et réactive</li>
+          <li>Tarifs transparents et adaptés</li>
+          <li>Accompagnement de A à Z</li>
+          <li>Disponible 6j/7 à Dakar</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="stats">
+    <div class="container stats-grid">
+      <div><div class="stat-num">150+</div><div class="stat-label">Clients accompagnés</div></div>
+      <div><div class="stat-num">8 ans</div><div class="stat-label">D'expérience</div></div>
+      <div><div class="stat-num">98%</div><div class="stat-label">Clients satisfaits</div></div>
+      <div><div class="stat-num">24h</div><div class="stat-label">Délai de réponse</div></div>
+    </div>
+  </div>
+
+  <section id="services">
+    <div class="container">
+      <div class="section-title">
+        <h2>Nos services</h2>
+        <p>Des prestations complètes pour simplifier la vie des entreprises et des particuliers.</p>
+      </div>
+      <div class="cards">
+        <div class="card">
+          <div class="card-icon">📋</div>
+          <h3>Gestion administrative</h3>
+          <p>Formalités, courriers, démarches et suivi administratif pour vous faire gagner du temps.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">💻</div>
+          <h3>Digitalisation</h3>
+          <p>Création de sites web, présence en ligne et outils numériques adaptés à votre activité.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🤝</div>
+          <h3>Conseil & accompagnement</h3>
+          <p>Un accompagnement personnalisé pour structurer, développer et pérenniser votre projet.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonials" id="temoignages">
+    <div class="container">
+      <div class="section-title">
+        <h2>Ils nous font confiance</h2>
+        <p>Ce que nos clients disent de notre accompagnement.</p>
+      </div>
+      <div class="testimonial-grid">
+        <div class="testimonial">
+          <p>« Une équipe sérieuse qui a géré toutes nos démarches administratives. Nous avons pu nous concentrer sur notre cœur de métier. »</p>
+          <div class="author">
+            <div class="avatar">AD</div>
+            <div><strong>Aminata Diop</strong><small>Gérante, boutique à Dakar</small></div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <p>« Grâce à leur service de digitalisation, notre entreprise est enfin visible en ligne. Réactifs et professionnels, je recommande. »</p>
+          <div class="author">
+            <div class="avatar">MS</div>
+            <div><strong>Moussa Sarr</strong><small>Directeur, PME logistique</small></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <div class="cta">
+        <h2>Prêt à démarrer votre projet ?</h2>
+        <p>Contactez-nous dès aujourd'hui pour un devis gratuit et sans engagement.</p>
+        <a href="mailto:gie.proservice@gmail.com" class="btn btn-accent">✉ gie.proservice@gmail.com</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="#" class="logo" style="color:#fff">GIE Pro<span>Service</span></a>
+          <p style="max-width:280px; font-size:.9rem; margin-top:8px;">Services professionnels aux entreprises et particuliers à Dakar, Sénégal.</p>
+        </div>
+        <div>
+          <strong style="color:#fff">Navigation</strong>
+          <p><a href="#services">Services</a></p>
+          <p><a href="#temoignages">Témoignages</a></p>
+          <p><a href="#contact">Contact</a></p>
+        </div>
+        <div>
+          <strong style="color:#fff">Contact</strong>
+          <p>Dakar, Sénégal</p>
+          <p><a href="mailto:gie.proservice@gmail.com">gie.proservice@gmail.com</a></p>
+        </div>
+      </div>
+      <div class="copyright">© 2026 GIE Pro Service — TP GoMyCode Dakar, Coach Mbengue. Tous droits réservés.</div>
+    </div>
+  </footer>
+
+</body>
+</html>
