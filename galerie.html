@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Galerie Produits</title>
+<style>
+  :root {
+    --bg: #f4f4f9;
+    --text: #1a1a1a;
+    --card-bg: #ffffff;
+    --accent: #6c5ce7;
+    --shadow: rgba(0,0,0,0.1);
+  }
+  [data-theme="dark"] {
+    --bg: #121212;
+    --text: #f4f4f9;
+    --card-bg: #1e1e1e;
+    --accent: #a29bfe;
+    --shadow: rgba(0,0,0,0.6);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    transition: background 0.4s ease, color 0.4s ease;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+  }
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 900px;
+    margin-bottom: 40px;
+  }
+  h1 { font-size: 1.8rem; }
+  #themeToggle {
+    background: var(--accent);
+    border: none;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: transform 0.2s ease;
+  }
+  #themeToggle:hover { transform: scale(1.08); }
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 30px;
+    max-width: 900px;
+    width: 100%;
+  }
+  .card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px var(--shadow);
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s ease forwards;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+  }
+  .card:nth-child(1) { animation-delay: 0.1s; }
+  .card:nth-child(2) { animation-delay: 0.3s; }
+  .card:nth-child(3) { animation-delay: 0.5s; }
+  .card:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 16px 30px var(--shadow);
+  }
+  .card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+  }
+  .card-body { padding: 18px; }
+  .card-body h2 { margin: 0 0 8px; font-size: 1.2rem; }
+  .card-body p { margin: 0 0 12px; opacity: 0.75; font-size: 0.9rem; }
+  .price { font-weight: bold; color: var(--accent); font-size: 1.1rem; }
+  @keyframes fadeInUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Notre Galerie</h1>
+  <button id="themeToggle">🌙 Mode Sombre</button>
+</header>
+<div class="gallery">
+  <div class="card">
+    <img src="https://picsum.photos/seed/product1/400/300" alt="Produit 1">
+    <div class="card-body">
+      <h2>Casque Sans Fil</h2>
+      <p>Son immersif, autonomie longue durée.</p>
+      <span class="price">79,99 €</span>
+    </div>
+  </div>
+  <div class="card">
+    <img src="https://picsum.photos/seed/product2/400/300" alt="Produit 2">
+    <div class="card-body">
+      <h2>Montre Connectée</h2>
+      <p>Suivi santé et notifications intelligentes.</p>
+      <span class="price">129,99 €</span>
+    </div>
+  </div>
+  <div class="card">
+    <img src="https://picsum.photos/seed/product3/400/300" alt="Produit 3">
+    <div class="card-body">
+      <h2>Enceinte Portable</h2>
+      <p>Basses puissantes, résistante à l'eau.</p>
+      <span class="price">59,99 €</span>
+    </div>
+  </div>
+</div>
+<script>
+  const toggleBtn = document.getElementById('themeToggle');
+  const root = document.documentElement;
+  // Respecte la préférence système au premier chargement
+  if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    root.setAttribute('data-theme', 'dark');
+    toggleBtn.textContent = '☀️ Mode Clair';
+  }
+  toggleBtn.addEventListener('click', () => {
+    const isDark = root.getAttribute('data-theme') === 'dark';
+    if (isDark) {
+      root.removeAttribute('data-theme');
+      toggleBtn.textContent = '🌙 Mode Sombre';
+    } else {
+      root.setAttribute('data-theme', 'dark');
+      toggleBtn.textContent = '☀️ Mode Clair';
+    }
+  });
+</script>
+</body>
+</html>
